@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAIR-CODE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        :root {
+            --neon-cyan: #00ffff;
+            --error-red: #ff4757;
+            --dark-bg: #0d0d0d;
+            --container-bg: #1a1a1a;
+            --input-bg: #2c2c2c;
+            --text-light: #e0e0e0;
+            --text-dark: #111;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Animated Background --- */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            display: block;
+            list-style: none;
+            background: rgba(0, 255, 255, 0.15);
+            animation: animate 25s linear infinite;
+            bottom: -200px;
+        }
+
+        @keyframes animate {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+            100% { transform: translateY(-1200px) rotate(720deg); opacity: 0; border-radius: 50%; }
+        }
+
+        .shape:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .shape:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .shape:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        .shape:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+        .shape:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+        .shape:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+        .shape:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+        .shape:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+        .shape:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+        .shape:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+        /* --- Content Wrapper --- */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--container-bg);
+            padding: 25px; /* MODIFIED */
+            border-radius: 25px;
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 30px rgba(0, 255, 255, 0.5);
+            width: 100%;
+            max-width: 380px; /* MODIFIED */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            margin-bottom: 15px; /* MODIFIED */
+        }
+        
+        .logo {
+            font-size: 3.5rem; /* MODIFIED */
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+            margin-bottom: 10px;
+        }
+
+        .title {
+            color: var(--neon-cyan);
+            font-size: 2rem; /* MODIFIED */
+            font-weight: 700;
+            text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan);
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 0.9rem; /* MODIFIED */
+            margin-bottom: 15px; /* MODIFIED */
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: white;
+            transform: scale(1.2);
+        }
+
+        .input-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .input-field {
+            background-color: var(--input-bg);
+            border: 1px solid #444;
+            border-radius: 15px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            outline: none;
+        }
+
+        .input-field:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .generate-btn {
+            background-color: var(--neon-cyan);
+            color: var(--text-dark);
+            border: none;
+            border-radius: 15px;
+            padding: 15px;
+            width: 100%;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .generate-btn:hover { background-color: #1effff; }
+        .generate-btn:active { transform: scale(0.98); }
+
+        .loading {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+            margin: 15px 0; /* MODIFIED */
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .code-display {
+            margin: 15px 0; /* MODIFIED */
+            padding: 15px;
+            border-radius: 10px;
+            width: 100%;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .code-display .error-message {
+            color: var(--error-red);
+            text-shadow: 0 0 5px var(--error-red);
+        }
+        
+        .code-display .success-message {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+        
+        .code-display i { margin-right: 10px; }
+
+        .copy-btn {
+            background-color: transparent;
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+            border-radius: 15px;
+            padding: 10px 15px;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--neon-cyan);
+            color: var(--text-dark);
+        }
+
+        .footer {
+            margin-top: 25px; /* MODIFIED */
+            color: var(--neon-cyan);
+            text-shadow: 0 0 3px var(--neon-cyan);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="myAudio" loop muted>
+      <source src="https://files.catbox.moe/l9319m.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="animated-background">
+        <div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div>
+        <div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="header">
+                <div class="logo"><i class="fas fa-robot"></i></div>
+                <h1 class="title">SHADOW-XTECH</h1>
+                <p class="subtitle">Generate your WhatsApp pair code</p>
+                <div class="social-icons">
+                    <a href="https://www.youtube.com/@Mrnta8ndo?sub_confirmation=1" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://t.me/blacktappy5" target="_blank" class="telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://whatsapp.com/channel/0029VasHgfG4tRrwjAUyTs10" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://github.com/Tappy-Black/Shadow-Xtech-V1" target="_blank" class="github"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Enter your WhatsApp number with country code</label>
+                <input type="text" id="mobileNumber" class="input-field" placeholder="+254759000340" pattern="[+][0-9]{10,}" title="Please enter country code starting with + followed by number">
+            </div>
+
+            <button class="generate-btn" id="submit">
+                <i class="fas fa-key"></i> Generate code
+            </button>
+
+            <div class="loading" id="loading">
+                <i class="fas fa-spinner"></i>
+            </div>
+
+            <div class="code-display" id="codeDisplay">
+                Your pair code will appear here
+            </div>
+
+            <button class="copy-btn" id="copy" onclick="copyCode()">
+                <i class="fas fa-copy"></i> Copy Code
+            </button>
+        </div>
+
+        <div class="footer">
+            <p>© Black-Tappy 2025 | Shadow-Xtech</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+    <script>
+        document.getElementById("submit").addEventListener("click", async (e) => {
+            e.preventDefault();
+            const mobileNumberInput = document.getElementById("mobileNumber");
+            const codeDisplay = document.getElementById("codeDisplay");
+            const loadingSpinner = document.getElementById("loading");
+
+            const mobileNumber = mobileNumberInput.value.trim();
+            if (!mobileNumber) {
+                codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Please enter your WhatsApp number</div>';
+                return;
+            }
+
+            loadingSpinner.style.display = "block";
+            codeDisplay.innerHTML = '';
+
+            try {
+                const response = await axios(`/code?number=${mobileNumber.replace(/[^0-9]/g, "")}`);
+                const code = response.data.code || "Service Unavailable";
+                if (code === "Service Unavailable") {
+                    codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Service Unavailable</div>';
+                } else {
+                    codeDisplay.innerHTML = `<div class="success-message"><i class="fas fa-check-circle"></i> CODE: ${code}</div>`;
+                }
+            } catch (error) {
+                console.error("Error generating code:", error);
+                codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Error generating code. Please try again.</div>';
+            } finally {
+                loadingSpinner.style.display = "none";
+            }
+        });
+
+        function copyCode() {
+            const codeText = document.getElementById("codeDisplay").innerText;
+            if (codeText.startsWith("CODE: ")) {
+                const code = codeText.replace('CODE: ', '');
+                navigator.clipboard.writeText(code).then(() => {
+                    const copyBtn = document.getElementById("copy");
+                    const originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error("Failed to copy text: ", err);
+                });
+            }
+        }
+
+        document.addEventListener('click', function () {
+            const audio = document.getElementById('myAudio');
+            if (audio.muted) {
+                audio.muted = false;
+                audio.play().catch(e => console.error("Audio play failed:", e));
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
