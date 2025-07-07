@@ -82,12 +82,12 @@
 
         .container {
             background-color: var(--container-bg);
-            padding: 25px; /* MODIFIED */
+            padding: 20px; /* MODIFIED: Reduced padding */
             border-radius: 25px;
             border: 2px solid var(--neon-cyan);
             box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 30px rgba(0, 255, 255, 0.5);
             width: 100%;
-            max-width: 380px; /* MODIFIED */
+            max-width: 350px; /* MODIFIED: Reduced max-width */
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -95,11 +95,11 @@
         }
 
         .header {
-            margin-bottom: 15px; /* MODIFIED */
+            margin-bottom: 10px; /* MODIFIED: Reduced margin */
         }
         
         .logo {
-            font-size: 3.5rem; /* MODIFIED */
+            font-size: 3rem; /* MODIFIED: Reduced font size */
             color: var(--neon-cyan);
             text-shadow: 0 0 10px var(--neon-cyan);
             margin-bottom: 10px;
@@ -107,7 +107,7 @@
 
         .title {
             color: var(--neon-cyan);
-            font-size: 2rem; /* MODIFIED */
+            font-size: 1.8rem; /* MODIFIED: Reduced font size */
             font-weight: 700;
             text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan);
             letter-spacing: 1px;
@@ -116,8 +116,8 @@
 
         .subtitle {
             color: var(--text-light);
-            font-size: 0.9rem; /* MODIFIED */
-            margin-bottom: 15px; /* MODIFIED */
+            font-size: 0.8rem; /* MODIFIED: Reduced font size */
+            margin-bottom: 10px; /* MODIFIED: Reduced margin */
         }
 
         .social-icons {
@@ -139,13 +139,13 @@
 
         .input-group {
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* MODIFIED: Reduced margin */
         }
 
         .input-label {
             display: block;
             color: var(--text-light);
-            margin-bottom: 10px;
+            margin-bottom: 5px; /* MODIFIED: Reduced margin */
             font-size: 0.9rem;
         }
 
@@ -155,7 +155,7 @@
             border-radius: 15px;
             color: var(--text-light);
             font-size: 1.1rem;
-            padding: 15px;
+            padding: 12px; /* MODIFIED: Reduced padding */
             width: 100%;
             text-align: center;
             outline: none;
@@ -171,7 +171,7 @@
             color: var(--text-dark);
             border: none;
             border-radius: 15px;
-            padding: 15px;
+            padding: 12px; /* MODIFIED: Reduced padding */
             width: 100%;
             font-size: 1.1rem;
             font-weight: 600;
@@ -191,7 +191,7 @@
             display: none;
             font-size: 1.5rem;
             color: var(--neon-cyan);
-            margin: 15px 0; /* MODIFIED */
+            margin: 10px 0; /* MODIFIED: Reduced margin */
             animation: spin 1s linear infinite;
         }
 
@@ -201,8 +201,8 @@
         }
 
         .code-display {
-            margin: 15px 0; /* MODIFIED */
-            padding: 15px;
+            margin: 10px 0; /* MODIFIED: Reduced margin */
+            padding: 12px; /* MODIFIED: Reduced padding */
             border-radius: 10px;
             width: 100%;
             min-height: 50px;
@@ -230,7 +230,7 @@
             color: var(--neon-cyan);
             border: 2px solid var(--neon-cyan);
             border-radius: 15px;
-            padding: 10px 15px;
+            padding: 8px 12px; /* MODIFIED: Reduced padding */
             width: 100%;
             font-size: 1rem;
             font-weight: 600;
@@ -248,7 +248,7 @@
         }
 
         .footer {
-            margin-top: 25px; /* MODIFIED */
+            margin-top: 15px; /* MODIFIED: Reduced margin */
             color: var(--neon-cyan);
             text-shadow: 0 0 3px var(--neon-cyan);
             font-size: 0.9rem;
@@ -325,6 +325,12 @@
             codeDisplay.innerHTML = '';
 
             try {
+                // The original code uses a relative path `/code?number=...`.
+                // This implies a backend server is expected to serve this endpoint.
+                // For this HTML to be self-contained and runnable without a specific backend,
+                // this part would need to be mocked or replaced with a client-side code generation logic.
+                // As the request is to update the HTML/CSS for size, I'm keeping the original Axios call structure,
+                // assuming the user has a backend setup or understands this limitation.
                 const response = await axios(`/code?number=${mobileNumber.replace(/[^0-9]/g, "")}`);
                 const code = response.data.code || "Service Unavailable";
                 if (code === "Service Unavailable") {
